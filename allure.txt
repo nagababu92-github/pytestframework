@@ -1,0 +1,52 @@
+report::
+
+pytest-json-report 1.4.0#
+#pip install pytest-json-report:
+
+report
+
+p1)ip install pytest-html
+https://pypi.org/project/pytest-html/
+
+pytest --html=report.htmlor mention in ini file addopts --html="path
+pytest automatically read and report saved in mentioned one
+
+1)Allure
+https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.8/
+download allure extart save in one folder and add path till bin
+then pycharm allure pytest
+--alluredir = path
+it saved json report 
+
+then
+change to path whre allure bat file saved from there
+
+allure server and previously generated html json path
+
+
+
+https://docs.qameta.io/allure/
+Allure Framework https://www.youtube.com/watch?v=kP-PnWBJPqA
+The following example adds the various types of extras using a pytest_runtest_makereport hook, which can be implemented in a plugin or conftest.py file:
+
+import pytest
+
+
+@pytest.hookimpl(hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    pytest_html = item.config.pluginmanager.getplugin("html")
+    outcome = yield
+    report = outcome.get_result()
+    extra = getattr(report, "extra", [])
+    if report.when == "call":
+        # always add url to report
+        extra.append(pytest_html.extras.url("http://www.example.com/"))
+        xfail = hasattr(report, "wasxfail")
+        if (report.skipped and xfail) or (report.failed and not xfail):
+            # only add additional html on failure
+            extra.append(pytest_html.extras.html("<div>Additional HTML</div>"))
+        report.extra = extra
+		
+		
+		
+		https://www.youtube.com/watch?v=snDSB9b8v_E
