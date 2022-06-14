@@ -1,0 +1,2 @@
+https://rahulshettyacademy.com/blog/index.php/2021/06/06/how-to-generate-html-reports-in-pytest-framework/
+pytest –-html=report.html.
